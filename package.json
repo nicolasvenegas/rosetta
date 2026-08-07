@@ -1,0 +1,42 @@
+{
+  "name": "pandocmd",
+  "version": "1.1.1",
+  "description": "Pandoc Web CMS - sitio estático generado a partir de markdown con Gulp y deploy a gh-pages.",
+  "main": "gulpfile.js",
+  "scripts": {
+    "start": "gulp",
+    "build": "gulp sass",
+    "deploy": "gh-pages -d dist"
+  },
+  "author": "Objeto Imposible",
+  "license": "MIT",
+  "private": true,
+  "bugs": {
+    "url": "https://github.com/objetoimposible/playaderatas/issues",
+    "email": "contact@objetoimposible.cl"
+  },
+  "engines": {
+    "node": ">=18.0"
+  },
+  "dependencies": {
+    "foundation-sites": "latest",
+    "jquery": ">=3.6.0",
+    "motion-ui": "latest",
+    "what-input": ">=5.2.10"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.29.3",
+    "gh-pages": "^6.3.0",
+    "gulp": "^4.0.2",
+    "gulp-sass": "^5.1.0",
+    "gulp-sourcemaps": "^3.0.0",
+    "sass-embedded": "^1.97.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/objetoimposible/playaderatas.git"
+  },
+  "browserslist": [
+    "last 2 versions"
+  ]
+}
