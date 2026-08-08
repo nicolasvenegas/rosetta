@@ -17,8 +17,14 @@ LAST_TITLE=$(grep -m 1 '^title:' "$LAST_FILE_PATH" | sed -E 's/^title:[[:space:]
 NAV_LINKS="<li id='nav-index'><a href='index.html'>index</a></li>"
 NAV_LINKS="$NAV_LINKS<li id='nav-last'><a href='${LAST_FILENAME}.html'>$LAST_TITLE</a></li>"
 
-# 2. MAPEAR ETIQUETAS (Extraídas del YAML)
-declare -A TAG_MAP
+# 2. MAPEAR ETIQUETAS (Extraídas del YAML, normalizadas a slug ASCII)
+slugify() {
+    echo "$1" | iconv -f UTF-8 -t ASCII//TRANSLIT 2>/dev/null \
+        | tr '[:upper:]' '[:lower:]' \
+        | sed -E "s/['\"]//g; s/[^a-z0-9]+/-/g; s/^-+//; s/-+$//"
+}
+
+declare -A TAG_MAP TAG_DISPLAY
 ALL_FILES=$(ls "$SOURCE_DIR"/*.md | sort -V)
 
 for file in $ALL_FILES; do
@@ -29,16 +35,21 @@ for file in $ALL_FILES; do
     # Limpiamos comas y comillas de los tags para que Bash los procese bien
     TAGS_RAW=$(grep -m 1 '^tags:' "$file" | sed -E 's/^tags:[[:space:]]*//; s/^["'\'']//; s/["'\'']$//' | tr ',' ' ')
     for tag in $TAGS_RAW; do
-        clean_tag=$(echo "$tag" | xargs | tr '[:upper:]' '[:lower:]')
-        [ -n "$clean_tag" ] && TAG_MAP["$clean_tag"]+="${file} "
+        tag=$(echo "$tag" | xargs)
+        [ -z "$tag" ] && continue
+        slug=$(slugify "$tag")
+        [ -n "$slug" ] || continue
+        TAG_MAP["$slug"]+="${file} "
+        [ -z "${TAG_DISPLAY[$slug]}" ] && TAG_DISPLAY["$slug"]="$tag"
     done
 done
 
 # 3. GENERAR PÁGINAS DE ETIQUETAS
-for tag in "${!TAG_MAP[@]}"; do
-    TAG_FILENAME="tag-${tag// /-}.html"
-    TAG_PAGE_CONTENT="---\ntitle: \"Etiqueta: $tag\"\n---\n<h3>Registro de <b>$tag</b></h3>\n<ul>"
-    for file_path in ${TAG_MAP[$tag]}; do
+for slug in "${!TAG_MAP[@]}"; do
+    display="${TAG_DISPLAY[$slug]}"
+    TAG_FILENAME="tag-${slug}.html"
+    TAG_PAGE_CONTENT="---\ntitle: \"Etiqueta: $display\"\n---\n<h3>Registro de <b>$display</b></h3>\n<ul>"
+    for file_path in ${TAG_MAP[$slug]}; do
         fname=$(basename "$file_path")
         fname="${fname%.*}"
         title=$(grep -m 1 '^title:' "$file_path" | sed -E 's/^title:[[:space:]]*//; s/^["'\'']//; s/["'\'']$//' | xargs)
@@ -66,8 +77,10 @@ for file in $ALL_FILES; do
     TAGS_RAW=$(grep -m 1 '^tags:' "$file" | sed -E 's/^tags:[[:space:]]*//; s/^["'\'']//; s/["'\'']$//' | tr ',' ' ')
     TAG_LINKS=""
     for tag in $TAGS_RAW; do
-        clean_tag=$(echo "$tag" | xargs | tr '[:upper:]' '[:lower:]')
-        [ -n "$clean_tag" ] && TAG_LINKS="$TAG_LINKS <a href='tag-${clean_tag// /-}.html' class='tag-label'>$clean_tag</a>"
+        tag=$(echo "$tag" | xargs)
+        [ -z "$tag" ] && continue
+        slug=$(slugify "$tag")
+        [ -n "$slug" ] && TAG_LINKS="$TAG_LINKS <a href='tag-${slug}.html' class='tag-label'>$tag</a>"
     done
     INDEX_CONTENT="$INDEX_CONTENT\n  <li><a href='${filename}.html'>${TITLE}</a> $TAG_LINKS</li>"
 done
