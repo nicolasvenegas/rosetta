@@ -1,0 +1,122 @@
+<!doctype html>
+<html class="no-js" lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Markdown, Pandoc y la obsolescencia de los formatos</title>
+  <link rel="stylesheet" href="css/app.css">
+</head>
+
+<body>
+
+  <nav>
+    <ul class="menu">
+      <li id='nav-index'><a href='index.html'>index</a></li><li id='nav-last'><a href='1.markdown-pandoc-obsolescencia.html'>Markdown, Pandoc y la obsolescencia de los formatos</a></li>
+    </ul>
+  </nav>
+
+  <div class="grid-x">
+    <div class="small-12 cell">
+      <a href="https://github.com/nicolasvenegas/rosetta" target="_blank"><img id="logo" src="img/ratita_1.png" alt=""></a>
+    </div>
+  </div>
+
+  <div class="grid-x">
+    <div class="small-12 cell">
+
+
+      <main>
+        <header>
+          <h1>Markdown, Pandoc y la obsolescencia de los formatos
+                        <sup class="subheader">7 de agosto, 2026</sup>
+                      </h1>
+         
+        </header>
+        <section>
+          <hr/>
+                    <h2
+                    id="un-sistema-de-conocimiento-que-desafía-la-obsolescencia">Un
+                    sistema de conocimiento que desafía la
+                    obsolescencia</h2>
+                    <p>Este entrada es parte de una serie que piensa el
+                    <strong>markdown</strong> no como una simple
+                    sintaxis, sino como la culminación digital de una
+                    tradición de siglos. La jerarquía de <code>#</code>,
+                    <code>##</code> y <code>###</code> replica el
+                    sistema de títulos, capítulos y secciones
+                    estandarizado con los códices medievales y la
+                    imprenta de tipos móviles. Markdown es la
+                    automatización de las marcas tipográficas que los
+                    autores escribían a mano para indicar al impresor
+                    qué era un título.</p>
+                    <h2 id="formato-abierto-texto-simple">Formato
+                    abierto, texto simple</h2>
+                    <p>A diferencia de los formatos propietarios como
+                    <code>.doc</code>, <code>.pages</code> o incluso
+                    <code>.pdf</code> — que dependen de software
+                    específico, a menudo obsoleto o de suscripción — el
+                    texto plano es “legible por humanos” incluso si la
+                    máquina que debe interpretarlo deja de existir.
+                    Markdown apuesta por el contenido puro: separa el
+                    fondo (el texto) de la forma (el CSS de Gulp).</p>
+                    <p>En archivística digital se dice que, para que
+                    algo sea eterno, debe ser simple. Markdown aplica
+                    una jerarquía semántica pura:</p>
+                    <ul>
+                    <li><code>#</code> significa “importancia
+                    máxima”.</li>
+                    <li><code>*</code> significa “énfasis”.</li>
+                    </ul>
+                    <p>Esta lógica es independiente del renderizado, un
+                    sistema de acceso universal que elimina los
+                    metadatos invisibles que suelen corromper los
+                    archivos con el paso del tiempo.</p>
+                    <h2 id="pandoc-el-traductor-universal">Pandoc: el
+                    traductor universal</h2>
+                    <blockquote>
+                    <p>Rosetta es el nombre de este proyecto porque
+                    aspira a ser una piedra de Rosetta: <strong>el mismo
+                    markdown, en mil formatos</strong>.</p>
+                    </blockquote>
+                    <p>Pandoc (literalmente “toda conversión”) es el
+                    traductor de documentos por excelencia: lee markdown
+                    y escribe HTML, PDF, LaTeX, docx, epub y decenas de
+                    formatos más, usando el mismo archivo fuente. Aquí
+                    combina con Gulp para generar el sitio estático y
+                    con LaTeX (vía <code>xelatex</code>) para el PDF con
+                    efecto halftone.</p>
+                    <h3 id="un-ejemplo-de-código">Un ejemplo de
+                    código</h3>
+                    <div class="sourceCode" id="cb1"><pre
+                    class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pandoc</span> entrada.md <span class="at">-o</span> entrada.html <span class="at">--template</span><span class="op">=</span>layout.html</span></code></pre></div>
+                    <p><em>Este contenido es una instancia de prueba
+                    semántica; el pipeline de Rosetta lo compila igual
+                    que lo hará con las entradas futuras.</em></p>
+                    <figure>
+                    <img src="img/002.png" alt="imagen de prueba" />
+                    <figcaption aria-hidden="true">imagen de
+                    prueba</figcaption>
+                    </figure>
+        </section>
+      </main>
+
+    </div>
+  </div>
+
+   <footer>
+    <h6><a target="_blank" href="https://github.com/nicolasvenegas/rosetta"><b>Rosetta</b></a> -  <a href="https://programminghistorian.org/es/lecciones/introduccion-a-markdown" target="_blank">Markdown</a>,  <a target="_blank" href="https://pandoc.org/diagram.svgz?v=20260131160627">Pandoc</a> & <a target="_blank" href="https://gulpjs.com/">Gulp</a>/<a href="https://nodejs.org/en" target="_blank">Node</a></h6>
+
+  </footer>
+
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/what-input.min.js"></script>
+  <script src="js/foundation.min.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+
+
+</html>
