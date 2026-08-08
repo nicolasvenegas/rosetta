@@ -1,6 +1,6 @@
-# Pandoc Web CMS
+# Rosetta
 
-Sitio estático generado desde Markdown con **Pandoc**, estilos **Foundation** (Sass) y automatización con **Gulp**. El contenido vive en `content/*.md` y se compila a `dist/` (branch `gh-pages`).
+Sitio estático generado desde Markdown con **Pandoc**, estilos **Foundation** (Sass) y automatización con **Gulp**, desplegado en GitHub Pages. El contenido vive en `content/*.md` y se compila a `dist/` (branch `gh-pages`).
 
 ## Contenido
 
@@ -16,18 +16,17 @@ bash build.sh        # compila contenido + sass a dist/
 gulp                 # igual que build.sh + BrowserSync + watch + deploy
 ```
 
-`gulp` además vigila cambios (MD/HTML/SCSS), recarga el navegador y publica `dist/` en la rama `gh-pages`.
+O con npm: `npm run start` (equivale a `gulp`). `gulp` además vigila cambios (MD/HTML/SCSS), recarga el navegador y publica `dist/` en la rama `gh-pages`.
 
 ## PDF
 
-`bash pdf.sh` exporta todo el contenido a `pdf/<fecha>_playaderatas_archivo.pdf` con `xelatex` (estilo halftone B/N, links azules, alineación izquierda).
+`bash pdf.sh` exporta todo el contenido a `pdf/<fecha>_rosetta_archivo.pdf` con `xelatex` (estilo halftone B/N, links azules, alineación izquierda).
 
 ## Estructura
 
 ```
 content/        entradas en Markdown
-css→dist/css    estilos compilados (solo en dist)
-filters/        (deprecado, ya no se usan)
+dist/           salida compilada (gh-pages)
 img/            logo y recursos
 js/             scripts del sitio
 layout.html     template de entradas

@@ -51,7 +51,7 @@ done
 
 # 4. GENERAR ÍNDICE (Con etiquetas al lado del título)
 INDEX_CONTENT="---
-title: Playa de Ratas
+title: Rosetta
 ---
 <ol id=\"lista-entradas\">"
 for file in $ALL_FILES; do

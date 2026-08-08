@@ -42,8 +42,13 @@ function copyAssets() {
     ], { allowEmpty: true }).pipe(gulp.dest('dist/js'));
 }
 
+function bashCmd() {
+    const gitBash = 'C:\\Program Files\\Git\\bin\\bash.exe';
+    return fs.existsSync(gitBash) ? `"${gitBash}"` : 'bash';
+}
+
 function buildPandoc(done) {
-    exec('bash build.sh', (err, stdout, stderr) => {
+    exec(`${bashCmd()} build.sh`, (err, stdout, stderr) => {
         if (stdout) console.log(stdout);
         if (stderr) console.error(stderr);
         done(err);
@@ -78,4 +83,5 @@ function serve() {
 }
 
 gulp.task('default', gulp.series(clean, copyAssets, buildPandoc, sassBuild, serve));
+gulp.task('sass', sassBuild);
 gulp.task('deploy', gulp.series(clean, copyAssets, buildPandoc, sassBuild, deploy));

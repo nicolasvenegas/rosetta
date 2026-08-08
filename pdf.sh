@@ -3,7 +3,7 @@
 SOURCE_DIR="content"
 FECHA_HOY=$(date +"%Y-%m-%d")
 mkdir -p pdf
-OUTPUT_FILE="pdf/${FECHA_HOY}_playaderatas_archivo.pdf"
+OUTPUT_FILE="pdf/${FECHA_HOY}_rosetta_archivo.pdf"
 TEMP_MD="pdf/temp_pdf_build.md"
 PROJECT_ROOT=$(pwd)
 
@@ -12,7 +12,7 @@ echo "🎨 Generando PDF (Efecto Halftone B/N y Diseño Izquierda)..."
 # 1. CREAR ARCHIVO TEMPORAL
 cat <<EOF > "$TEMP_MD"
 ---
-title: "Playa de Ratas"
+title: "Rosetta"
 author: "Objeto Imposible"
 lang: es
 ---
